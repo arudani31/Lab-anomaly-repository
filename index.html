@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediMind | AI Lab Analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Input Section -->
+        <div class="card">
+            <h1>MediMind AI</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                Advanced anomaly prediction & auto-explanation for clinical lab results.
+            </p>
+
+            <form id="predictionForm">
+                <div class="form-group">
+                    <label>Patient ID</label>
+                    <input type="text" id="patient_id" value="P1024" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="age" value="65" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Temperature (°C)</label>
+                    <input type="number" step="0.1" id="temperature" value="37.0" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Heart Rate (bpm)</label>
+                    <input type="number" id="heart_rate" value="75" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Oxygen Saturation (%)</label>
+                    <input type="number" id="oxygen_saturation" value="98" required>
+                </div>
+
+                <div class="form-group">
+                    <label>WBC Count</label>
+                    <input type="number" id="wbc_count" value="7000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Flu Symptoms?</label>
+                    <select id="has_flu_symptoms">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <span id="btnText">Analyze Results</span>
+                    <div class="loader" id="loader"></div>
+                </button>
+            </form>
+        </div>
+
+        <!-- Result Section -->
+        <div class="card result-section" id="resultCard">
+            <h2>Analysis Result</h2>
+
+            <div id="statusBadge" class="status-badge"></div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Confidence Score</label>
+                <div class="bar-wrapper" style="background: rgba(255,255,255,0.05); height: 12px; margin-top: 0.5rem;">
+                    <div id="confidenceBar" class="bar-fill" style="background: var(--primary-color); width: 0%;"></div>
+                </div>
+                <div id="confidenceValue"
+                    style="text-align: right; font-size: 0.875rem; margin-top: 0.25rem; color: var(--text-muted);">0%
+                </div>
+            </div>
+
+            <h3>AI Explanation</h3>
+            <div class="explanation-box" id="explanationText">
+                <!-- AI text goes here -->
+            </div>
+
+            <h3 style="margin-top: 2rem;">Key Risk Factors (SHAP)</h3>
+            <div id="shapChart" class="shap-chart">
+                <!-- SHAP bars go here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
